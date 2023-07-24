@@ -30,6 +30,20 @@ async function run() {
         const classesCollection = client.db('collegeDb').collection('classes');
         
         const admissionCollection= client.db('collegeDb').collection('forms');
+        const reviewCollection= client.db('collegeDb').collection('reviews');
+
+        app.post('/review', async (req, res) => {
+            const newForm = req.body;
+            const result = await reviewCollection.insertOne(newForm);
+            console.log(result);
+            res.send(result);
+        })
+
+        app.get('/allreview', async (req, res) => {
+            const cursor = reviewCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        })
 
          //  search text
          app.get("/collegeSearchByName/:text", async(req,res)=>{
