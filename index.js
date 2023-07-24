@@ -29,7 +29,7 @@ async function run() {
 
         const classesCollection = client.db('collegeDb').collection('classes');
         
-        const admissionCollection= client.db('admissionDb').collection('forms');
+        const admissionCollection= client.db('collegeDb').collection('forms');
 
          //  search text
          app.get("/collegeSearchByName/:text", async(req,res)=>{
